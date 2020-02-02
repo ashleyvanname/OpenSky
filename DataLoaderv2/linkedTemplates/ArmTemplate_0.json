@@ -14,14 +14,6 @@
 		"Source_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Source'"
-		},
-		"Trigger_9yc_properties_CopyData_parameters_windowStart": {
-			"type": "string",
-			"defaultValue": "@{addminutes(trigger().scheduledTime, -1)}"
-		},
-		"Trigger_9yc_properties_CopyData_parameters_windowEnd": {
-			"type": "string",
-			"defaultValue": "@trigger().scheduledTime"
 		}
 	},
 	"variables": {
@@ -213,14 +205,7 @@
 									"recursive": true,
 									"maxConcurrentConnections": 30,
 									"wildcardFileName": "*",
-									"modifiedDatetimeStart": {
-										"value": "@pipeline().parameters.windowStart",
-										"type": "Expression"
-									},
-									"modifiedDatetimeEnd": {
-										"value": "@pipeline().parameters.windowEnd",
-										"type": "Expression"
-									}
+									"enablePartitionDiscovery": false
 								},
 								"formatSettings": {
 									"type": "DelimitedTextReadSettings",
@@ -258,14 +243,6 @@
 						]
 					}
 				],
-				"parameters": {
-					"windowStart": {
-						"type": "String"
-					},
-					"windowEnd": {
-						"type": "String"
-					}
-				},
 				"annotations": []
 			},
 			"dependsOn": [
@@ -286,16 +263,7 @@
 							"referenceName": "CopyData",
 							"type": "PipelineReference"
 						},
-						"parameters": {
-							"windowStart": {
-								"type": "Expression",
-								"value": "[parameters('Trigger_9yc_properties_CopyData_parameters_windowStart')]"
-							},
-							"windowEnd": {
-								"type": "Expression",
-								"value": "[parameters('Trigger_9yc_properties_CopyData_parameters_windowEnd')]"
-							}
-						}
+						"parameters": {}
 					}
 				],
 				"type": "ScheduleTrigger",

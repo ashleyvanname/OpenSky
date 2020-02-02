@@ -11,12 +11,6 @@
 		"Source_connectionString": {
 			"value": ""
 		},
-		"Trigger_9yc_properties_CopyData_parameters_windowStart": {
-			"value": "@{addminutes(trigger().scheduledTime, -1)}"
-		},
-		"Trigger_9yc_properties_CopyData_parameters_windowEnd": {
-			"value": "@trigger().scheduledTime"
-		},
 		"containerUri": {
 			"value": ""
 		},

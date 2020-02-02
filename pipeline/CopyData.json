@@ -31,14 +31,7 @@
 							"recursive": true,
 							"maxConcurrentConnections": 30,
 							"wildcardFileName": "*",
-							"modifiedDatetimeStart": {
-								"value": "@pipeline().parameters.windowStart",
-								"type": "Expression"
-							},
-							"modifiedDatetimeEnd": {
-								"value": "@pipeline().parameters.windowEnd",
-								"type": "Expression"
-							}
+							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
 							"type": "DelimitedTextReadSettings",
@@ -74,14 +67,6 @@
 				]
 			}
 		],
-		"parameters": {
-			"windowStart": {
-				"type": "String"
-			},
-			"windowEnd": {
-				"type": "String"
-			}
-		},
 		"annotations": []
 	}
 }

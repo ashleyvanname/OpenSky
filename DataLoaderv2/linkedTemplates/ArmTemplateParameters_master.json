@@ -1,0 +1,27 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "DataLoaderv2"
+		},
+		"Destination_connectionString": {
+			"value": ""
+		},
+		"Source_connectionString": {
+			"value": ""
+		},
+		"Trigger_9yc_properties_CopyData_parameters_windowStart": {
+			"value": "@{addminutes(trigger().scheduledTime, -1)}"
+		},
+		"Trigger_9yc_properties_CopyData_parameters_windowEnd": {
+			"value": "@trigger().scheduledTime"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}

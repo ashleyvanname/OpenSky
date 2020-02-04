@@ -1,0 +1,17 @@
+{
+	"name": "trigger_Load",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 10,
+				"startTime": "2020-02-04T03:30:00.000Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}

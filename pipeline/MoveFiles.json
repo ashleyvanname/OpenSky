@@ -211,15 +211,9 @@
 				"type": "String",
 				"defaultValue": "statesall"
 			},
-			"SourceStore_Directory": {
-				"type": "String"
-			},
 			"DestinationStore_Location": {
 				"type": "String",
 				"defaultValue": "snowflake-stg"
-			},
-			"DestinationStore_Directory": {
-				"type": "String"
 			}
 		},
 		"annotations": []

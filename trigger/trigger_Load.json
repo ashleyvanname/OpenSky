@@ -3,13 +3,24 @@
 	"properties": {
 		"annotations": [],
 		"runtimeState": "Stopped",
-		"pipelines": [],
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "MoveFiles",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"SourceStore_Location": "statesall",
+					"DestinationStore_Location": "snowflake-stg"
+				}
+			}
+		],
 		"type": "ScheduleTrigger",
 		"typeProperties": {
 			"recurrence": {
 				"frequency": "Minute",
 				"interval": 10,
-				"startTime": "2020-02-04T03:30:00.000Z",
+				"startTime": "2020-02-03T22:40:00.000Z",
 				"timeZone": "UTC"
 			}
 		}

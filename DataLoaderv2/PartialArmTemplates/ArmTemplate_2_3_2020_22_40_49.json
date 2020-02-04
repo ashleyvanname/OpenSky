@@ -6,34 +6,6 @@
 			"type": "string",
 			"metadata": "Data Factory name",
 			"defaultValue": "DataLoaderv2"
-		},
-		"Destination_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'Destination'"
-		},
-		"OpenSky_HttpTrigger_functionKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'functionKey' of 'OpenSky_HttpTrigger'"
-		},
-		"SnowflakeLoad_functionKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'functionKey' of 'SnowflakeLoad'"
-		},
-		"Source_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'Source'"
-		},
-		"KeyVault_properties_typeProperties_baseUrl": {
-			"type": "string",
-			"defaultValue": "https://OpenSkyKeyVault.vault.azure.net/"
-		},
-		"trigger_Load_properties_MoveFiles_parameters_SourceStore_Location": {
-			"type": "string",
-			"defaultValue": "statesall"
-		},
-		"trigger_Load_properties_MoveFiles_parameters_DestinationStore_Location": {
-			"type": "string",
-			"defaultValue": "snowflake-stg"
 		}
 	},
 	"variables": {
@@ -63,8 +35,7 @@
 						"typeProperties": {
 							"dataset": {
 								"referenceName": "Source",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							},
 							"fieldList": [
 								"childItems"
@@ -143,15 +114,13 @@
 									"inputs": [
 										{
 											"referenceName": "Source",
-											"type": "DatasetReference",
-											"parameters": {}
+											"type": "DatasetReference"
 										}
 									],
 									"outputs": [
 										{
 											"referenceName": "Destination",
-											"type": "DatasetReference",
-											"parameters": {}
+											"type": "DatasetReference"
 										}
 									]
 								},
@@ -178,8 +147,7 @@
 									"typeProperties": {
 										"dataset": {
 											"referenceName": "Source",
-											"type": "DatasetReference",
-											"parameters": {}
+											"type": "DatasetReference"
 										},
 										"enableLogging": false,
 										"storeSettings": {
@@ -254,8 +222,7 @@
 						"userProperties": [],
 						"typeProperties": {
 							"functionName": "HttpTrigger",
-							"method": "GET",
-							"headers": {}
+							"method": "GET"
 						},
 						"linkedServiceName": {
 							"referenceName": "OpenSky_HttpTrigger",
@@ -306,9 +273,7 @@
 					}
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Destination')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/BinaryDataSource_File')]",
@@ -351,9 +316,7 @@
 					}
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Source')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/BinaryDataSource_Folder')]",
@@ -389,9 +352,7 @@
 					}
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Source')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Destination')]",
@@ -415,36 +376,7 @@
 				},
 				"schema": []
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Destination')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DestinationDataset_9yc')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Destination",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"container": "snowflake-stg"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Destination')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Source')]",
@@ -468,118 +400,6 @@
 				},
 				"schema": []
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Source')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SourceDataset_9yc')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Source",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"container": "statesall"
-					},
-					"columnDelimiter": ",",
-					"rowDelimiter": "\n",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "icao24",
-						"type": "String"
-					},
-					{
-						"name": "callsign",
-						"type": "String"
-					},
-					{
-						"name": "origin_country",
-						"type": "String"
-					},
-					{
-						"name": "time_position",
-						"type": "String"
-					},
-					{
-						"name": "last_contact",
-						"type": "String"
-					},
-					{
-						"name": "longitude",
-						"type": "String"
-					},
-					{
-						"name": "latitude",
-						"type": "String"
-					},
-					{
-						"name": "baro_altitude",
-						"type": "String"
-					},
-					{
-						"name": "on_ground",
-						"type": "String"
-					},
-					{
-						"name": "velocity",
-						"type": "String"
-					},
-					{
-						"name": "true_track",
-						"type": "String"
-					},
-					{
-						"name": "vertical_rate",
-						"type": "String"
-					},
-					{
-						"name": "sensors",
-						"type": "String"
-					},
-					{
-						"name": "geo_altitude",
-						"type": "String"
-					},
-					{
-						"name": "squawk",
-						"type": "String"
-					},
-					{
-						"name": "spi",
-						"type": "String"
-					},
-					{
-						"name": "position_source",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Source')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Destination')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('Destination_connectionString')]"
-				}
-			},
 			"dependsOn": []
 		},
 		{
@@ -590,7 +410,7 @@
 				"annotations": [],
 				"type": "AzureKeyVault",
 				"typeProperties": {
-					"baseUrl": "[parameters('KeyVault_properties_typeProperties_baseUrl')]"
+					"baseUrl": "https://OpenSkyKeyVault.vault.azure.net/"
 				}
 			},
 			"dependsOn": []
@@ -606,7 +426,7 @@
 					"functionAppUrl": "https://openskyapp.azurewebsites.net",
 					"functionKey": {
 						"type": "SecureString",
-						"value": "[parameters('OpenSky_HttpTrigger_functionKey')]"
+						"value": "**********"
 					}
 				}
 			},
@@ -623,21 +443,8 @@
 					"functionAppUrl": "https://snowflake-load.azurewebsites.net",
 					"functionKey": {
 						"type": "SecureString",
-						"value": "[parameters('SnowflakeLoad_functionKey')]"
+						"value": "**********"
 					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Source')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('Source_connectionString')]"
 				}
 			},
 			"dependsOn": []
@@ -654,8 +461,7 @@
 						"pipelineReference": {
 							"referenceName": "pipeline1",
 							"type": "PipelineReference"
-						},
-						"parameters": {}
+						}
 					}
 				],
 				"type": "ScheduleTrigger",
@@ -686,8 +492,8 @@
 							"type": "PipelineReference"
 						},
 						"parameters": {
-							"SourceStore_Location": "[parameters('trigger_Load_properties_MoveFiles_parameters_SourceStore_Location')]",
-							"DestinationStore_Location": "[parameters('trigger_Load_properties_MoveFiles_parameters_DestinationStore_Location')]"
+							"SourceStore_Location": "statesall",
+							"DestinationStore_Location": "snowflake-stg"
 						}
 					}
 				],

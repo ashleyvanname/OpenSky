@@ -11,9 +11,29 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Destination'"
 		},
+		"OpenSky_HttpTrigger_functionKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'functionKey' of 'OpenSky_HttpTrigger'"
+		},
+		"SnowflakeLoad_functionKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'functionKey' of 'SnowflakeLoad'"
+		},
 		"Source_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Source'"
+		},
+		"KeyVault_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://OpenSkyKeyVault.vault.azure.net/"
+		},
+		"trigger_Load_properties_MoveFiles_parameters_SourceStore_Location": {
+			"type": "string",
+			"defaultValue": "statesall"
+		},
+		"trigger_Load_properties_MoveFiles_parameters_DestinationStore_Location": {
+			"type": "string",
+			"defaultValue": "snowflake-stg"
 		},
 		"containerUri": {
 			"type": "string",
@@ -45,8 +65,23 @@
 					"Destination_connectionString": {
 						"value": "[parameters('Destination_connectionString')]"
 					},
+					"OpenSky_HttpTrigger_functionKey": {
+						"value": "[parameters('OpenSky_HttpTrigger_functionKey')]"
+					},
+					"SnowflakeLoad_functionKey": {
+						"value": "[parameters('SnowflakeLoad_functionKey')]"
+					},
 					"Source_connectionString": {
 						"value": "[parameters('Source_connectionString')]"
+					},
+					"KeyVault_properties_typeProperties_baseUrl": {
+						"value": "[parameters('KeyVault_properties_typeProperties_baseUrl')]"
+					},
+					"trigger_Load_properties_MoveFiles_parameters_SourceStore_Location": {
+						"value": "[parameters('trigger_Load_properties_MoveFiles_parameters_SourceStore_Location')]"
+					},
+					"trigger_Load_properties_MoveFiles_parameters_DestinationStore_Location": {
+						"value": "[parameters('trigger_Load_properties_MoveFiles_parameters_DestinationStore_Location')]"
 					}
 				}
 			},

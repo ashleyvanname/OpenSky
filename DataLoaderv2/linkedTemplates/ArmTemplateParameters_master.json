@@ -8,8 +8,23 @@
 		"Destination_connectionString": {
 			"value": ""
 		},
+		"OpenSky_HttpTrigger_functionKey": {
+			"value": ""
+		},
+		"SnowflakeLoad_functionKey": {
+			"value": ""
+		},
 		"Source_connectionString": {
 			"value": ""
+		},
+		"KeyVault_properties_typeProperties_baseUrl": {
+			"value": "https://OpenSkyKeyVault.vault.azure.net/"
+		},
+		"trigger_Load_properties_MoveFiles_parameters_SourceStore_Location": {
+			"value": "statesall"
+		},
+		"trigger_Load_properties_MoveFiles_parameters_DestinationStore_Location": {
+			"value": "snowflake-stg"
 		},
 		"containerUri": {
 			"value": ""

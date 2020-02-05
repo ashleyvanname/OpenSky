@@ -193,6 +193,7 @@
 					},
 					"columnDelimiter": ",",
 					"escapeChar": "\\",
+					"firstRowAsHeader": false,
 					"quoteChar": "\""
 				},
 				"schema": []
@@ -257,7 +258,7 @@
 								"value": "@activity('FilterFiles').output.value",
 								"type": "Expression"
 							},
-							"batchCount": 20,
+							"batchCount": 10,
 							"activities": [
 								{
 									"name": "CopyAFile",
@@ -278,8 +279,7 @@
 											"storeSettings": {
 												"type": "AzureBlobStorageReadSettings",
 												"recursive": true,
-												"wildcardFolderPath": "*",
-												"wildcardFileName": "*",
+												"wildcardFileName": "*.*",
 												"enablePartitionDiscovery": false
 											},
 											"formatSettings": {
@@ -290,12 +290,14 @@
 										"sink": {
 											"type": "DelimitedTextSink",
 											"storeSettings": {
-												"type": "AzureBlobStorageWriteSettings"
+												"type": "AzureBlobStorageWriteSettings",
+												"maxConcurrentConnections": 30,
+												"copyBehavior": "PreserveHierarchy"
 											},
 											"formatSettings": {
 												"type": "DelimitedTextWriteSettings",
 												"quoteAllText": true,
-												"fileExtension": ".txt"
+												"fileExtension": ".csv"
 											}
 										},
 										"enableStaging": false,
